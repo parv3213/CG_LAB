@@ -1,0 +1,60 @@
+#include <GL/glfw.h>
+#include <math.h>
+double factor =3.14169/180;
+void drawunitcircle(void);
+void drawtriangle(void);
+int main()
+{
+   int width=1000, height=800;
+   glfwInit();
+   glfwOpenWindow( width, height,0,0,0,0,0,0,GLFW_WINDOW);
+   count;
+   while(1)
+   {
+       glClear(GL_COLOR_BUFFER_BIT);
+
+
+       glPushMatrix();
+       glColor3f(1.0,0.0,0.0);
+       glScalef(0.25,0.25,0.0);
+       c
+       glTranslatef(0.0,-2.5,0.0);
+       drawunitcircle();
+       glPopMatrix();
+
+       glPushMatrix();
+       glColor3f(0.5,0.3,0.3);
+       glScalef(1.0,0.25,0.0);
+       glTranslatef(-0.25,-2.5,0.0);
+       drawtriangle();
+       glPopMatrix();
+
+       glPushMatrix();
+       glColor3f(0.5,0.3,0.3);
+       glScalef(1.0,0.25,0.0);
+       glTranslatef(0.25,-2.5,0.0);
+       drawtriangle();
+       glPopMatrix();
+
+       glfwSwapBuffers();
+       if (glfwGetKey(GLFW_KEY_ESC)==GLFW_PRESS)break;
+   }
+   glfwCloseWindow();
+   glfwTerminate();
+}
+void drawunitcircle()
+{
+    int Start_Degree =0, End_Degree =360;
+    glBegin(GL_TRIANGLE_FAN);
+    for( int angle=Start_Degree; angle< End_Degree; angle++)
+        glVertex2d(0.5*sin((float)angle*factor),0.5*cos((float)angle*factor));
+    glEnd();
+}
+
+void drawtriangle(){
+glBegin(GL_TRIANGLE_FAN);
+  glVertex2d(-0.5,-0.5);
+  glVertex2d(0.5,-0.5);
+  glVertex2d(0,0.5);
+  glEnd();
+}
